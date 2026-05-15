@@ -1,17 +1,11 @@
-from flask import Flask, redirect, render_template
+from fastapi import FastAPI
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 
-app = Flask(__name__)
+app = FastAPI()
 
-
-@app.route('/')
-def index():
-    return 'Hello World!'
-
-
-
-
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+@app.get("/health")
+def health():
+    return {"status": "ok"}
